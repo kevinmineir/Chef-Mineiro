@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { react } from 'react';
 
 
-import { TravelJournal } from './Components/App';
+import { TravelJournal } from './Components/App/Index';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
