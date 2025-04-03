@@ -3,12 +3,12 @@ import { createRoot } from 'react-dom/client';
 import { react } from 'react';
 
 
-import { TravelJournal } from './Components/App/Index';
+import { ChefMineiro } from './Components/App/Index';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <main> 
-      <TravelJournal/>
+      <ChefMineiro/>
     </main>
   </StrictMode>,
 )

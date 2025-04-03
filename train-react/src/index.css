@@ -1,77 +1,59 @@
 body{
     padding: 0;
     margin: 0;
+    background-color: #FAFAF8
 }
 
-.header-travel{
+.Header{
+    height: 95px;
+    box-shadow: 1px 0px 10px rgb(126, 124, 124);
     width: 100vw;
-    height:5vh;
-    min-height: 50px;
-    background-color: rgb(250, 83, 83);
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: white;
 }
-.world-png{
-    width:1.5rem;
-    padding-right: 1rem;
+
+.Img-chef-header{
+    width: 100px;
+    object-fit: cover;
 }
-.travel-text{
-    color: white;
-    font-weight: 400;
-    font-size:14px;
+
+.Chef-text-header{
+    font-size: 27px;
+    font-weight: 600;
+    font-family:Arial, Helvetica, sans-serif ;
+    padding-right: 90px;
 }
-.travel{
-    margin-top: 3rem;
-    justify-self: center;
+
+.AddIngredient-Container{
     display: flex;
     align-items: center;
-    background-color: rgb(245, 243, 243);
-    box-shadow:2px 2px 5px gray;
+    justify-content: center;
+    padding-right: 15px;
+    margin-top: 30px;
 }
-.travel-img{
-    object-fit: cover;
-    min-height: 200px;
-    height: 20vh;
-    min-width:180px;
-    width: 8vw;
-    border-radius: 0px 10px 10px 0px;
+
+.AddIngredient-search{
+    width: 550px;
+    height: 30px;
+    border-radius: 10px;
+    font-size: 15px;
+    border: none;
+    outline: 1px solid rgb(136, 135, 135);
 }
-.travel-info-container{
-    display: flex;
-    flex-direction: column;
+
+.AddIngredient-button{
+    height: 30px;
+    border: none;
+    background-color:black;
+    color: white;
+    border-radius: 14px;
+    margin-left: 18px;
 }
-.travel-country{
-    font-weight: 600;
-    font-size: 12px;
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-left: 1rem;
+.AddIngredient-button:hover{
+    background-color:rgb(53, 53, 53);
 }
-.travel-link{
-    color: grey;
-    margin-left: 0.5rem;
-}
-.travel-location{
-    font-weight: 700;
-    font-size: 30px;
-    margin-top: 0;
-    margin-bottom: 0.9rem;
-    margin-left: 1rem;
-}
-.travel-date{
-    font-weight: 700;
-    font-size: 13px;
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-left: 1rem;
-}
-.travel-desc{
-    font-weight: 400;
-    font-size: 13px;
-    max-width: 25rem;
-    margin-top: 0.5rem;
-    margin-bottom: 0;
-    margin-left: 1rem;
-    margin-right: 1rem;
+.AddIngredient-button:active{
+    background-color:black;
 }
