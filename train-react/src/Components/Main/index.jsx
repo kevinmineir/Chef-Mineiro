@@ -1,5 +1,6 @@
 import { react } from 'react';
 
+
 export function Main() {
     return (
         <>
@@ -7,9 +8,9 @@ export function Main() {
             <span className='info-text'>Escreva Os Ingredientes Disponiveis e Eu Te Darei Uma Receita !</span>
         </div>
 
-        <form action="">
+        <form onSubmit={SubmitIngredient}>
             <div className='AddIngredient-Container'>
-            <input className='AddIngredient-search' type="search" placeholder='Ex : Orégano , Queijo ...' />
+            <input className='AddIngredient-search' name='Ingredient' type="search" placeholder='Ex : Orégano , Queijo ...' />
             <button className='AddIngredient-button'> + Adicionar Ingrediente</button>
             </div>
         </form>
