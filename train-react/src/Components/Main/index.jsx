@@ -1,6 +1,5 @@
 import React from 'react';
-
-
+import * as S from './styles';
 
 export function Main() {
     const [Ingredients, SetIngredients] = React.useState([])
@@ -8,7 +7,7 @@ export function Main() {
     const IngredientsList = Ingredients.map((ingredient) => {
         return (
             <>
-            <li key={ingredient} className='List-item'>{ingredient}</li>        
+            <S.ListItem key={ingredient} >{ingredient}</S.ListItem>        
             </>
         )
     })
@@ -16,45 +15,51 @@ export function Main() {
 
 
     function RenderList(){
-       if (Ingredients.length >= 4) {
-        return (
-        <div>
-            <div className='Lista-Container'>
-                <span className='Lista-text'>Lista De Ingredientes :</span>
-            </div>
-            
-        <ul className='Lista-content'>
-        {IngredientsList}
-        </ul>
 
-        <button className='Clear-Button' onClick={ClearIngredient}>Limpar Ingredientes</button>
-
-        <div className='RecipeGenerator-Container'>
-                <div className='RecipeGeneratorText-Container'>
-                <span className='RecipeGeneratorText'>Pronto Para a Receita?</span>
-                <span className='RecipeGeneratorDesc'>Criar Uma Receita De Acordo Com Sua Lista De Ingredientes</span>
-                </div>
-                <div className='RecipeGenerator-Button-container'>
-                <button className='RecipeGenerator-Button'>Criar Receita</button>
-                </div>
-            </div>
-        </div>
-        )
-    }
         if (Ingredients.length > 0 && Ingredients.length < 4) {
             return (
             <div>
-                <div className='Lista-Container'>
-                    <span className='Lista-text'>Lista De Ingredientes :</span>
-                </div>
+                <S.ListaContainer>
+                    <S.ListaText>Lista De Ingredientes :</S.ListaText>
+                </S.ListaContainer>
                 
-            <ul className='Lista-content'>
-            {IngredientsList}
-            </ul>
+                <S.ListaContent>
+                   {IngredientsList}
+                </S.ListaContent>
     
-            <button className='Clear-Button' onClick={ClearIngredient}>Limpar Ingredientes</button>
+            <S.ClearButton onClick={ClearIngredient}>Limpar Ingredientes</S.ClearButton>
           </div>
         )    
+    }
+
+
+       if (Ingredients.length >= 4) {
+        return (
+        <div>
+            
+            <S.ListaContainer>
+                <S.ListaText>Lista De Ingredientes :</S.ListaText>
+            </S.ListaContainer>
+            
+        <S.ListaContent>
+        {IngredientsList}
+        </S.ListaContent>
+
+        <S.ClearButton onClick={ClearIngredient}>Limpar Ingredientes</S.ClearButton>
+
+        <S.RecipeGeneratorContainer>
+                <S.RecipeGeneratorTextContainer>
+                <S.RecipeGeneratorText>Pronto Para a Receita?</S.RecipeGeneratorText>
+                <S.RecipeGeneratorDesc>Criar Uma Receita De Acordo Com Sua Lista De Ingredientes</S.RecipeGeneratorDesc>
+                </S.RecipeGeneratorTextContainer>
+
+                <S.RecipeGeneratorButtonContainer>
+                    <S.RecipeGeneratorButton>Criar Receita</S.RecipeGeneratorButton>
+                </S.RecipeGeneratorButtonContainer>
+        </S.RecipeGeneratorContainer>
+
+        </div>
+        )
     }  
     }
    
@@ -69,15 +74,15 @@ export function Main() {
 
     return (
         <>
-        <div className='info-Container'>
-            <span className='info-text'>Escreva Os Ingredientes Disponiveis e Eu Te Darei Uma Receita !</span>
-        </div>
+        <S.InfoContainer>
+            <S.InfoText>Escreva Os Ingredientes Disponiveis e Eu Te Darei Uma Receita !</S.InfoText>
+         </S.InfoContainer>
 
         <form action={AddIngredient}>
-            <div className='AddIngredient-Container'>
-            <input  className='AddIngredient-search' name='Ingredient' type="search" placeholder='Ex : Orégano , Queijo ...' />
-            <button className='AddIngredient-button'> + Adicionar Ingrediente</button>
-            </div>
+            <S.AddIngredientContainer>
+            <S.AddIngredientInput name='Ingredient' type="search" placeholder='Ex : Orégano , Queijo ...' />
+            <S.AddIngredientButton> + Adicionar Ingrediente</S.AddIngredientButton>
+            </S.AddIngredientContainer>
         </form>
 
         {RenderList()}
