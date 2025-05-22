@@ -1,22 +1,25 @@
 import React from 'react';
 import * as S from './styles';
+import { Recipe } from '../Recipe';
+import { GetRecipe } from '../Recipe/IA';
 
 export function Main() {
-    const [Ingredients, SetIngredients] = React.useState([])
+    function ClearIngredient(){
+        SetIngredients([])
+        SetReceita('')
+        SetShownReceita(false)
+    }
+
+
+    function AddIngredient(FormData){
+        const newIngredient = FormData.get("Ingredient")
+        SetIngredients(PrevIngredients => [...PrevIngredients, newIngredient])
+    } 
     
-    const IngredientsList = Ingredients.map((ingredient) => {
-        return (
-            <>
-            <S.ListItem key={ingredient} >{ingredient}</S.ListItem>        
-            </>
-        )
-    })
-
-
-
+   
     function RenderList(){
 
-        if (Ingredients.length > 0 && Ingredients.length < 4) {
+        if (Ingredients.length <= 2) {
             return (
             <div>
                 <S.ListaContainer>
@@ -28,12 +31,11 @@ export function Main() {
                 </S.ListaContent>
     
             <S.ClearButton onClick={ClearIngredient}>Limpar Ingredientes</S.ClearButton>
+            <S.IngredientsInfo>Adicione Pelo Menos 3 Ingredientes Para Gerar A Receita</S.IngredientsInfo>
           </div>
         )    
-    }
-
-
-       if (Ingredients.length >= 4) {
+    }  
+       if (Ingredients.length >= 3) {
         return (
         <div>
             
@@ -45,7 +47,7 @@ export function Main() {
         {IngredientsList}
         </S.ListaContent>
 
-        <S.ClearButton onClick={ClearIngredient}>Limpar Ingredientes</S.ClearButton>
+        <S.ClearButton onClick={ClearIngredient}>Limpar Ingredientes {Receita !== '' ? 'e Receita' : undefined}</S.ClearButton>
 
         <S.RecipeGeneratorContainer>
                 <S.RecipeGeneratorTextContainer>
@@ -54,7 +56,7 @@ export function Main() {
                 </S.RecipeGeneratorTextContainer>
 
                 <S.RecipeGeneratorButtonContainer>
-                    <S.RecipeGeneratorButton>Criar Receita</S.RecipeGeneratorButton>
+                    <S.RecipeGeneratorButton onClick={Receita === '' ? RenderRecipe : ToggleReceita}>{Receita === '' ? 'Gerar' : (ShowReceita === true ? 'Esconder' : 'Mostrar')} Receita</S.RecipeGeneratorButton>
                 </S.RecipeGeneratorButtonContainer>
         </S.RecipeGeneratorContainer>
 
@@ -62,16 +64,30 @@ export function Main() {
         )
     }  
     }
-   
-    function ClearIngredient(){
-        SetIngredients([])
+    const [Receita,SetReceita] = React.useState('')
+    async function RenderRecipe() {
+       const AIreceita = await GetRecipe(Ingredients)
+       SetReceita(AIreceita)
+       SetShownReceita(true)
     }
 
-    function AddIngredient(FormData){
-        const newIngredient = FormData.get("Ingredient")
-        SetIngredients(PrevIngredients => [...PrevIngredients, newIngredient])
-    } 
 
+    const [ShowReceita,SetShownReceita] = React.useState(false)
+    function ToggleReceita(){
+    SetShownReceita(PrevShownReceita => !PrevShownReceita)
+    }
+
+
+    const [Ingredients, SetIngredients] = React.useState([]) 
+    const IngredientsList = Ingredients.map((ingredient) => {
+        return (
+            <>
+            <S.ListItem key={ingredient} >{ingredient}</S.ListItem>        
+            </>
+        )
+    })
+
+   
     return (
         <>
         <S.InfoContainer>
@@ -86,6 +102,8 @@ export function Main() {
         </form>
 
         {RenderList()}
+
+        <Recipe ShowReceita={ShowReceita} Receita={Receita} />
        </>
     )
 }

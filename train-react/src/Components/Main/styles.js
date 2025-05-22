@@ -4,8 +4,8 @@ export const InfoContainer = styled.div`
     display: flex;
     align-self: center;
     justify-self: center;
-    padding-right: 0.5rem;
     margin-top: 1rem;
+    margin-left: 1rem;
 `
 export const InfoText = styled.span`
     font-size: 1.1rem;
@@ -16,7 +16,6 @@ export const AddIngredientContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-right: 1rem;
     margin-top: 1rem;
 `
 export const AddIngredientInput = styled.input`
@@ -96,7 +95,13 @@ export const ClearButton = styled.button`
         background-color: rgb(23, 23, 23);
     }
 `
-
+export const IngredientsInfo = styled.span`
+    display: flex;
+    justify-self: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    font-family: 'Times New Roman', Times, serif ;
+`
 
 
 
@@ -112,15 +117,16 @@ export const RecipeGeneratorContainer = styled.div`
     align-self: center;
     justify-self: center;
     margin-top: 3rem;
-    width: 50rem;
-    max-width: 700px;
+    width: 100%;
+    max-width: 850px;
     padding: 1.5rem 2rem 1.5rem 2rem;
-    background-color: rgba(231, 195, 154, 0.527);
+    background-color: rgba(241, 221, 198, 0.66);
     align-items: center;
     border-radius: 5px;
 `
 export const RecipeGeneratorTextContainer = styled.div`
     display: flex;
+    margin-left: 0.8rem;
     flex-direction: column;
     width: fit-content;
 `
@@ -142,8 +148,9 @@ export const RecipeGeneratorButtonContainer = styled.div`
     flex: 1;
 `
 export const RecipeGeneratorButton = styled.button`
-     background-color: rgb(243, 120, 5);
+    background-color: rgb(243, 120, 5);
     color: white;
+    font-size: 0.85rem;
     margin-left: 1rem;
     border-radius: 20px;
     font-weight: 400;
