@@ -46,11 +46,10 @@ export function Main() {
         <S.ListaContent>
         {IngredientsList}
         </S.ListaContent>
-
         <S.ClearButton onClick={ClearIngredient}>Limpar Ingredientes {Receita !== '' ? 'e Receita' : undefined}</S.ClearButton>
 
         <S.RecipeGeneratorContainer>
-                <S.RecipeGeneratorTextContainer>
+                <S.RecipeGeneratorTextContainer ref={RecipeSection}>
                 <S.RecipeGeneratorText>Pronto Para a Receita?</S.RecipeGeneratorText>
                 <S.RecipeGeneratorDesc>Criar Uma Receita De Acordo Com Sua Lista De Ingredientes</S.RecipeGeneratorDesc>
                 </S.RecipeGeneratorTextContainer>
@@ -65,12 +64,19 @@ export function Main() {
     }  
     }
     const [Receita,SetReceita] = React.useState('')
+    const RecipeSection = React.useRef(null)
+
     async function RenderRecipe() {
        const AIreceita = await GetRecipe(Ingredients)
        SetReceita(AIreceita)
        SetShownReceita(true)
+       GoToReceita()
     }
 
+        React.useEffect(() => {  // NAO PODE ESTAR DENTRO DE OUTRA FUNÇAO POIS JA E UMA FUNÇAO PROPRIA
+        if (Receita !== '' && RecipeSection.current !== null){ // SE A RECEITA FOR VAZIA E O VALOR ATUAL DE RECIPESECTION FOR 'NADA"
+            RecipeSection.current.scrollIntoView({behavior: "smooth"})  // IR PARA O LUGAR ONDE O RECIPE SECTION ESTA , VIA O REF (React.UseRef)
+        }}, [Receita])  // TODA VEZ QUE RECEITA FOR ALTERADA
 
     const [ShowReceita,SetShownReceita] = React.useState(false)
     function ToggleReceita(){
@@ -103,7 +109,7 @@ export function Main() {
 
         {RenderList()}
 
-        <Recipe ShowReceita={ShowReceita} Receita={Receita} />
+        <Recipe ref={RecipeSection} ShowReceita={ShowReceita} Receita={Receita} />
        </>
     )
 }

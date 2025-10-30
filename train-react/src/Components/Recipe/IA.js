@@ -10,7 +10,6 @@ const SYSTEM_PROMPT = `
     Formate Em MarkDown
     **RESPONDA SEMPRE NA LINGUAGEM PORTUGUES BRASIL**
 `   
-
 const hf = new InferenceClient(apiKey);
 
 export async function GetRecipe(Ingredients) {    

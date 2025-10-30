@@ -21,7 +21,7 @@ export function Recipe(props){
     if (props.ShowReceita === true) {
     return (
         <>
-        <div style={styles2}>Chef Mineiro Recomenda: </div>
+        <div ref={props.ref} style={styles2}>Chef Mineiro Recomenda: </div>
         <div style={styles}>
             <Markdown>{props.Receita}</Markdown>
         </div>
